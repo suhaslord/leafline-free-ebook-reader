@@ -23,3 +23,5 @@ Vercel deployment: import this GitHub repository and choose the Other framework 
 ## Notes
 
 No login is needed. Library and reading progress are stored **only in this browser** using localStorage; clearing site storage or changing devices loses them. Available titles and reader formats depend on Project Gutenberg. Gutenberg's copyright terms vary by country: check local law before reading or downloading. No copyrighted book piracy or paywall bypass is supported.
+
+Static website assets live in `public/`; serverless endpoints are under `api/`.

@@ -1,4 +1,9 @@
-import { chunkIntoPages } from './api/shared.js';
+function chunkIntoPages(text, target = 3500) {
+  const paragraphs = String(text ?? '').split(/\n\s*\n/g).map(p => p.trim()).filter(Boolean);
+  const pages = []; let current = [], chars = 0;
+  for (const para of paragraphs) { if (current.length && chars + para.length > target) { pages.push(current); current = []; chars = 0; } current.push(para); chars += para.length; }
+  if (current.length) pages.push(current); return pages;
+}
 
 const CURATED = [1342,84,1661,11,35,345,2701,45,1260,55,2641,64317,98,174,768];
 const TOPICS = [
