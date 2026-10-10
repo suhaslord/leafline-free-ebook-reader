@@ -16,3 +16,11 @@ test('splits content on paragraph boundaries', () => {
   assert.deepEqual(chunkIntoPages('alpha\n\nbeta\n\ngamma', 8), [['alpha'], ['beta'], ['gamma']]);
   assert.deepEqual(chunkIntoPages('  '), []);
 });
+
+import { searchFallback, FALLBACK_BOOKS } from '../api/seed.js';
+test('bundled catalog can recover from provider outages', () => {
+  assert.ok(FALLBACK_BOOKS.length >= 20);
+  assert.equal(searchFallback({ ids:'1342,84',search:'',topic:'',page:1 }).count, 2);
+  assert.equal(searchFallback({ ids:'',search:'Jane',topic:'',page:1 }).count >= 1, true);
+  assert.equal(searchFallback({ ids:'',search:'',topic:'mystery',page:1 }).results.some(b=>b.id===1661), true);
+});
